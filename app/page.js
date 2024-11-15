@@ -88,7 +88,7 @@ export default function Home() {
           style={{ border: "none", background: "transparent", marginTop: "60px" }}
         >
           <Image
-            src={changeImage}
+            src={btn}
             width={300}
             height={150}
             alt="Loy Krathong Button"
