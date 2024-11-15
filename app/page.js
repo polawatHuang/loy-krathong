@@ -68,7 +68,7 @@ export default function Home() {
   };
 
   return (
-    <> <main className="App-header relative kanit-medium px-[6px]">
+    <> <main className="App-header relative kanit-medium">
         <h1 className="mt-[60px] text-[34px]">ลอยกระทงออนไลน์</h1>
         <h2 id="show_count" className="text-[134px]">{formatNumber(count)}</h2>
         <Image
@@ -79,7 +79,7 @@ export default function Home() {
           alt="Krathong"
           className="animate-pulse"
         />
-        <p className="mt-[60px]">
+        <p className="mt-[60px] px-[12px]">
           มาร่วมลอยกระทงออนไลน์ ร่วมกันลดขยะ รักษาสิ่งแวดล้อมให้อยู่กับเราตลอดไป
         </p>
 
@@ -123,7 +123,7 @@ export default function Home() {
         </div>
 
         <footer className="w-full bg-gray-700 mt-[60px] absolute bottom-0 flex flex-col py-4 kanit-regular text-[16px] justify-center items-center">
-          <p>
+          <p className="px-[12px]">
             เว็บไซต์นี้จัดทำโดยเพจบักทึงของโจ้{" "}
             มาร่วมกันรักษาธรรมชาติเพื่อช่วยเหลือสื่งแวดล้อมทางน้ำให้สวยงาม (App version 1.0.0)
           </p>
