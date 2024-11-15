@@ -68,7 +68,7 @@ export default function Home() {
   };
 
   return (
-    <> <main className="App-header relative kanit-medium">
+    <> <main className="App-header relative kanit-medium px-[6px]">
         <h1 className="mt-[60px] text-[34px]">ลอยกระทงออนไลน์</h1>
         <h2 id="show_count" className="text-[134px]">{formatNumber(count)}</h2>
         <Image
