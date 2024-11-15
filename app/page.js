@@ -99,7 +99,7 @@ export default function Home() {
         <ReactAudioPlayer id="fallingSound" src="/sounds/falling.wav" />
 
         <div className="my-[60px]">
-        <div className="px-[24px] pt-[6px] pb-[60px] bg-blue-400 border-2 border-blue-600 rounded-[15px]">
+        <div className="px-[24px] pt-[6px] pb-[65px] bg-blue-400 border-2 border-blue-600 rounded-[15px]">
           <h3 className="text-center my-2 text-[34px]">Country&apos;s Score:</h3>
           <ul>
             {countries.length === 0 ? <li className="text-center">Loading data ...</li> : null}
@@ -128,7 +128,7 @@ export default function Home() {
             มาร่วมกันรักษาธรรมชาติเพื่อช่วยเหลือสื่งแวดล้อมทางน้ำให้สวยงาม (App version 1.0.0)
           </p>
           <div>
-          <button onClick={onClickSound} className="text-yellow-300">
+          <button onClick={onClickSound} className="text-yellow-300 mt-1">
             <b>{soundText + " "}{" "}</b>
           </button>
           <ReactAudioPlayer
