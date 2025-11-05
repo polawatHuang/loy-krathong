@@ -21,7 +21,7 @@ export default function Footer() {
 
           {/* Contact Section */}
           <div className="text-center md:text-right">
-            <h3 className="text-xl font-semibold mb-4 text-yellow-300">ผู้จัดทำเว็บไซต์</h3>
+            <h3 className="text-xl font-semibold mb-4 text-yellow-300">สั่งทำเว็บไซต์</h3>
             <div className="text-sm space-y-2 opacity-90">
               <p>📱 โทร: <a href="tel:095-724-9324" className="hover:text-yellow-300 transition-colors">095-724-9324 (คุณโจ้)</a></p>
               <p>✉️ อีเมล: <a href="mailto:polawathuang@gmail.com" className="hover:text-yellow-300 transition-colors">polawathuang@gmail.com</a></p>
