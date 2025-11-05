@@ -31,8 +31,14 @@ export default function LoyKrathongHeadlessModal({ isOpen, onClose, onLaunch }) 
     setIsSubmitting(true);
     
     try {
-      // Call the external API
-      const response = await fetch('https://www.cipacmeeting.com/api/loykrathong', {
+      console.log('Sending data to API:', {
+        type: selectedKrathong,
+        name,
+        wish,
+      });
+
+      // Call the local API
+      const response = await fetch('/api/loykrathong', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,7 +50,18 @@ export default function LoyKrathongHeadlessModal({ isOpen, onClose, onLaunch }) 
         }),
       });
 
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+
+      // Check if response is ok
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('API Error Response:', errorText);
+        throw new Error(`HTTP ${response.status}: ${errorText}`);
+      }
+
       const result = await response.json();
+      console.log('API Response:', result);
       
       if (result.success) {
         // Create krathong object with style for local display
@@ -72,7 +89,7 @@ export default function LoyKrathongHeadlessModal({ isOpen, onClose, onLaunch }) 
       }
     } catch (error) {
       console.error('API Error:', error);
-      alert('เกิดข้อผิดพลาดในการเชื่อมต่อ กรุณาลองใหม่อีกครั้ง');
+      alert(`เกิดข้อผิดพลาด: ${error.message}\nกรุณาลองใหม่อีกครั้งหรือติดต่อผู้ดูแลระบบ`);
     } finally {
       setIsSubmitting(false);
     }
