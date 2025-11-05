@@ -115,7 +115,7 @@ export default function Home() {
 
   return (
     <main className="relative w-full min-h-screen overflow-hidden">
-            <div className="">
+      <div className="hidden md:block">
         <Image src={ImageCLeft} alt="Chrome Left Decoration" width={150} height={150} className="absolute top-0 left-0 z-0 float-on-river float-delay-1"/>
         <Image src={ImageCRight} alt="Chrome Right Decoration" width={100} height={100} className="absolute top-30 left-50 z-0 float-zigzag float-delay-2 opacity-90" />
         <Image src={ImageCLeft} alt="Chrome Right Decoration" width={50} height={50} className="absolute top-50 left-30 z-0 float-zigzag float-delay-3 opacity-70"/>
