@@ -115,7 +115,7 @@ export default function Home() {
     <main className="relative w-full min-h-screen overflow-hidden">
       <h1 className="text-4xl lg:text-6xl text-[#fff000] text-center mt-12 lg:mt-32">ลอยกระทงออนไลน์</h1>
       <p className="text-center font text-[#fff000] mt-4 text-2xl lg:w-[35%] mx-auto">ประจำปี {new Date().getFullYear()}</p>
-      <p className="text-center font-extralight text-white mt-4 text-2xl lg:w-[35%] mx-auto">มาร่วมกันลอยกระทงออนไลน์ ร่วมกันลดขยะ รักษาสิ่งแวดล้อมให้อยู่กับเราตลอดไป</p>
+      <p className="text-center font-extralight text-white mt-4 text-2xl w-[80%] lg:w-[35%] mx-auto">มาร่วมกันลอยกระทงออนไลน์ ร่วมกันลดขยะ รักษาสิ่งแวดล้อมให้อยู่กับเราตลอดไป</p>
       {/* Background (เหมือนเดิม) */}
       <Image
         src={bgImage}
