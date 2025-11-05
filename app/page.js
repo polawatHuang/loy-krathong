@@ -6,6 +6,8 @@ import Image from 'next/image';
 import LoyKrathongHeadlessModal from './components/LoyKrathongHeadlessModal';
 import FloatingKrathong from './components/FloatingKrathong';
 import bgImage from '../public/images/bg-loy-krathongs.webp';
+import ImageCLeft from '../public/images/chrome-left.webp';
+import ImageCRight from '../public/images/chrome-right.webp';
 
 export default function Home() {
   // 2. 👈 เปลี่ยนชื่อ State เป็น isOpen เพื่อความชัดเจน (Headless UI นิยมใช้ชื่อนี้)
@@ -113,6 +115,13 @@ export default function Home() {
 
   return (
     <main className="relative w-full min-h-screen overflow-hidden">
+            <div className="">
+        <Image src={ImageCLeft} alt="Chrome Left Decoration" width={150} height={150} className="absolute top-0 left-0 z-0 float-on-river float-delay-1"/>
+        <Image src={ImageCRight} alt="Chrome Right Decoration" width={100} height={100} className="absolute top-30 left-50 z-0 float-zigzag float-delay-2 opacity-90" />
+        <Image src={ImageCLeft} alt="Chrome Right Decoration" width={50} height={50} className="absolute top-50 left-30 z-0 float-zigzag float-delay-3 opacity-70"/>
+        <Image src={ImageCLeft} alt="Chrome Right Decoration" width={50} height={50} className="absolute top-50 right-20 z-0 float-pulse float-delay-1 opacity-80"/>
+        <Image src={ImageCRight} alt="Chrome Right Decoration" width={250} height={250} className="absolute top-0 right-30 z-0 float-on-river float-delay-4"/>
+      </div>
       <h1 className="text-4xl lg:text-6xl text-[#fff000] text-center mt-12 lg:mt-32">ลอยกระทงออนไลน์</h1>
       <p className="text-center font text-[#fff000] mt-4 text-2xl lg:w-[35%] mx-auto">ประจำปี {new Date().getFullYear()}</p>
       <p className="text-center font-extralight text-white mt-4 text-2xl w-[80%] lg:w-[35%] mx-auto">มาร่วมกันลอยกระทงออนไลน์ ร่วมกันลดขยะ รักษาสิ่งแวดล้อมให้อยู่กับเราตลอดไป</p>

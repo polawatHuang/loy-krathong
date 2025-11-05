@@ -46,6 +46,88 @@ body {
   }
 }
 
+/* Circular Floating Animation */
+@keyframes circular-float {
+  0% {
+    transform: translateX(0px) translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateX(15px) translateY(-10px) rotate(90deg);
+  }
+  50% {
+    transform: translateX(0px) translateY(-20px) rotate(180deg);
+  }
+  75% {
+    transform: translateX(-15px) translateY(-10px) rotate(270deg);
+  }
+  100% {
+    transform: translateX(0px) translateY(0px) rotate(360deg);
+  }
+}
+
+/* Zigzag Floating Animation */
+@keyframes zigzag-float {
+  0% {
+    transform: translateX(0px) translateY(0px) rotate(0deg);
+  }
+  16.66% {
+    transform: translateX(20px) translateY(-5px) rotate(15deg);
+  }
+  33.33% {
+    transform: translateX(-10px) translateY(-10px) rotate(-10deg);
+  }
+  50% {
+    transform: translateX(15px) translateY(-15px) rotate(20deg);
+  }
+  66.66% {
+    transform: translateX(-20px) translateY(-10px) rotate(-15deg);
+  }
+  83.33% {
+    transform: translateX(10px) translateY(-5px) rotate(10deg);
+  }
+  100% {
+    transform: translateX(0px) translateY(0px) rotate(0deg);
+  }
+}
+
+/* Pulse Floating Animation */
+@keyframes pulse-float {
+  0% {
+    transform: translateY(0px) scale(1) rotate(0deg);
+  }
+  33.33% {
+    transform: translateY(-8px) scale(1.1) rotate(5deg);
+  }
+  66.66% {
+    transform: translateY(-16px) scale(0.95) rotate(-3deg);
+  }
+  100% {
+    transform: translateY(0px) scale(1) rotate(0deg);
+  }
+}
+
+/* Spiral Floating Animation */
+@keyframes spiral-float {
+  0% {
+    transform: translateX(0px) translateY(0px) rotate(0deg) scale(1);
+  }
+  20% {
+    transform: translateX(8px) translateY(-12px) rotate(72deg) scale(1.05);
+  }
+  40% {
+    transform: translateX(-3px) translateY(-18px) rotate(144deg) scale(0.95);
+  }
+  60% {
+    transform: translateX(-12px) translateY(-10px) rotate(216deg) scale(1.1);
+  }
+  80% {
+    transform: translateX(5px) translateY(-5px) rotate(288deg) scale(0.9);
+  }
+  100% {
+    transform: translateX(0px) translateY(0px) rotate(360deg) scale(1);
+  }
+}
+
 @keyframes gentle-bob {
   0%, 100% {
     transform: translateY(0px) scale(1);
@@ -76,4 +158,38 @@ body {
 
 .float-on-river p {
   animation: soft-glow 5s ease-in-out infinite;
+}
+
+/* Different floating animation classes */
+.float-circular {
+  animation: circular-float 8s linear infinite;
+}
+
+.float-zigzag {
+  animation: zigzag-float 7s ease-in-out infinite;
+}
+
+.float-pulse {
+  animation: pulse-float 4s ease-in-out infinite;
+}
+
+.float-spiral {
+  animation: spiral-float 10s ease-in-out infinite;
+}
+
+/* Add delays for more natural movement */
+.float-delay-1 {
+  animation-delay: -1s;
+}
+
+.float-delay-2 {
+  animation-delay: -2s;
+}
+
+.float-delay-3 {
+  animation-delay: -3s;
+}
+
+.float-delay-4 {
+  animation-delay: -4s;
 }
