@@ -28,8 +28,8 @@ export async function GET() {
         name: krathong.name,
         wish: krathong.wish,
         style: {
-          left: krathong.style_left || `${Math.random() * 90}%`,
-          bottom: krathong.style_bottom || `${Math.random() * 40}%`,
+          left: krathong.style_left || `${10 + Math.random() * 60}%`,
+          bottom: krathong.style_bottom || `${Math.random() * 30}%`,
           animationDuration: krathong.animation_duration || `${10 + Math.random() * 5}s`,
         },
         createdAt: krathong.created_at
@@ -120,8 +120,8 @@ export async function POST(request) {
         name,
         wish,
         style: {
-          left: `${Math.random() * 90}%`,
-          bottom: `${Math.random() * 40}%`,
+          left: `${10 + Math.random() * 60}%`,
+          bottom: `${Math.random() * 30}%`,
           animationDuration: `${10 + Math.random() * 5}s`,
         },
         createdAt: new Date().toISOString()
@@ -147,8 +147,8 @@ export async function POST(request) {
         name: externalData.name || name,
         wish: externalData.wish || wish,
         style: {
-          left: externalData.style_left || `${Math.random() * 90}%`,
-          bottom: externalData.style_bottom || `${Math.random() * 40}%`,
+          left: externalData.style_left || `${10 + Math.random() * 60}%`,
+          bottom: externalData.style_bottom || `${Math.random() * 30}%`,
           animationDuration: externalData.animation_duration || `${10 + Math.random() * 5}s`,
         },
         createdAt: externalData.created_at || new Date().toISOString()
@@ -169,8 +169,8 @@ export async function POST(request) {
       name,
       wish,
       style: {
-        left: `${Math.random() * 90}%`,
-        bottom: `${Math.random() * 40}%`,
+        left: `${10 + Math.random() * 60}%`,
+        bottom: `${Math.random() * 30}%`,
         animationDuration: `${10 + Math.random() * 5}s`,
       },
       createdAt: new Date().toISOString()

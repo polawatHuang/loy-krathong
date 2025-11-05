@@ -17,6 +17,45 @@ export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioElement, setAudioElement] = useState(null);
 
+    // ฟังก์ชันสำหรับปรับตำแหน่งกระทงให้อยู่ใน 30% ล่างและ 70% ซ้ายของหน้าจอ
+  const normalizeKrathongPosition = (krathong) => {
+    const normalizedStyle = { ...krathong.style };
+    
+    // ถ้ามี top position ให้แปลงเป็น bottom position
+    if (normalizedStyle.top && !normalizedStyle.bottom) {
+      const topPercent = parseFloat(normalizedStyle.top);
+      // แปลง top เป็น bottom และจำกัดให้อยู่ในช่วง 0-30%
+      normalizedStyle.bottom = `${Math.min(30, Math.max(0, Math.random() * 30))}%`;
+      delete normalizedStyle.top;
+    } 
+    // ถ้ามี bottom position แล้ว ให้ตรวจสอบว่าไม่เกิน 30%
+    else if (normalizedStyle.bottom) {
+      const bottomPercent = parseFloat(normalizedStyle.bottom);
+      if (bottomPercent > 30) {
+        normalizedStyle.bottom = `${Math.random() * 30}%`;
+      }
+    } 
+    // ถ้าไม่มี position ใดๆ ให้สร้างใหม่
+    else {
+      normalizedStyle.bottom = `${Math.random() * 30}%`;
+    }
+
+    // ตรวจสอบและจำกัด left position ให้อยู่ระหว่าง 10%-70%
+    if (normalizedStyle.left) {
+      const leftPercent = parseFloat(normalizedStyle.left);
+      if (leftPercent < 10 || leftPercent > 70) {
+        normalizedStyle.left = `${10 + Math.random() * 60}%`;
+      }
+    } else {
+      normalizedStyle.left = `${10 + Math.random() * 60}%`;
+    }
+
+    return {
+      ...krathong,
+      style: normalizedStyle
+    };
+  };
+
   // โหลดกระทงจาก API และเปิด modal หลัง hydration
   useEffect(() => {
     // Fetch krathongs from API instead of localStorage
@@ -24,8 +63,10 @@ export default function Home() {
       try {
         const response = await fetch('/api/loykrathong');
         const result = await response.json();
-        if (result.success) {
-          setFloatingKrathongs(result.data);
+        if (result.success && Array.isArray(result.data)) {
+          // ปรับตำแหน่งกระทงทุกตัวให้อยู่ใน 30% ล่าง
+          const normalizedKrathongs = result.data.map(normalizeKrathongPosition);
+          setFloatingKrathongs(normalizedKrathongs);
         }
       } catch (error) {
         console.error('Failed to fetch krathongs:', error);
@@ -109,8 +150,11 @@ export default function Home() {
   const handleLaunchKrathong = (newKrathong) => {
     if (!isMounted) return; // ป้องกันการทำงานก่อน hydration
     
+    // ปรับตำแหน่งกระทงใหม่ให้อยู่ใน 30% ล่าง
+    const normalizedKrathong = normalizeKrathongPosition(newKrathong);
+    
     // Add the new krathong to local state immediately for better UX
-    setFloatingKrathongs(prevKrathongs => [...prevKrathongs, newKrathong]);
+    setFloatingKrathongs(prevKrathongs => [...prevKrathongs, normalizedKrathong]);
     
     // Note: The actual API call will be made from the modal component
     // This function now just handles updating the local state
