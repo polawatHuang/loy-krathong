@@ -27,7 +27,7 @@ export default function FloatingKrathong({ type, name, wish, style }) {
           />
         </PopoverButton>
         
-        <PopoverPanel className="absolute mt-2 transform top-[-50%] left-[-50%]">
+        <PopoverPanel className="absolute mt-2 z-50 transform top-[-50%] left-[-50%]">
           <div className="bg-linear-to-r bg-gray-800 text-white p-2 rounded-lg shadow-lg max-w-xs">
             <div className="text-sm font-extralight min-w-[200px] text-center">
               {`${name} อธิษฐานว่า: ${wish}`}
