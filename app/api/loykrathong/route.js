@@ -29,7 +29,7 @@ export async function GET() {
         wish: krathong.wish,
         style: {
           left: krathong.style_left || `${10 + Math.random() * 60}%`,
-          bottom: krathong.style_bottom || `${Math.random() * 30}%`,
+          bottom: krathong.style_bottom || `${Math.random() * 20}%`,
           animationDuration: krathong.animation_duration || `${10 + Math.random() * 5}s`,
         },
         createdAt: krathong.created_at
@@ -121,7 +121,7 @@ export async function POST(request) {
         wish,
         style: {
           left: `${10 + Math.random() * 60}%`,
-          bottom: `${Math.random() * 30}%`,
+          bottom: `${Math.random() * 20}%`,
           animationDuration: `${10 + Math.random() * 5}s`,
         },
         createdAt: new Date().toISOString()
@@ -148,7 +148,7 @@ export async function POST(request) {
         wish: externalData.wish || wish,
         style: {
           left: externalData.style_left || `${10 + Math.random() * 60}%`,
-          bottom: externalData.style_bottom || `${Math.random() * 30}%`,
+          bottom: externalData.style_bottom || `${Math.random() * 20}%`,
           animationDuration: externalData.animation_duration || `${10 + Math.random() * 5}s`,
         },
         createdAt: externalData.created_at || new Date().toISOString()
@@ -170,7 +170,7 @@ export async function POST(request) {
       wish,
       style: {
         left: `${10 + Math.random() * 60}%`,
-        bottom: `${Math.random() * 30}%`,
+        bottom: `${Math.random() * 20}%`,
         animationDuration: `${10 + Math.random() * 5}s`,
       },
       createdAt: new Date().toISOString()

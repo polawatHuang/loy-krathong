@@ -17,27 +17,27 @@ export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioElement, setAudioElement] = useState(null);
 
-    // ฟังก์ชันสำหรับปรับตำแหน่งกระทงให้อยู่ใน 30% ล่างและ 70% ซ้ายของหน้าจอ
+    // ฟังก์ชันสำหรับปรับตำแหน่งกระทงให้อยู่ใน 20% ล่างและ 70% ซ้ายของหน้าจอ
   const normalizeKrathongPosition = (krathong) => {
     const normalizedStyle = { ...krathong.style };
     
     // ถ้ามี top position ให้แปลงเป็น bottom position
     if (normalizedStyle.top && !normalizedStyle.bottom) {
       const topPercent = parseFloat(normalizedStyle.top);
-      // แปลง top เป็น bottom และจำกัดให้อยู่ในช่วง 0-30%
-      normalizedStyle.bottom = `${Math.min(30, Math.max(0, Math.random() * 30))}%`;
+      // แปลง top เป็น bottom และจำกัดให้อยู่ในช่วง 0-20%
+      normalizedStyle.bottom = `${Math.min(20, Math.max(0, Math.random() * 20))}%`;
       delete normalizedStyle.top;
     } 
-    // ถ้ามี bottom position แล้ว ให้ตรวจสอบว่าไม่เกิน 30%
+    // ถ้ามี bottom position แล้ว ให้ตรวจสอบว่าไม่เกิน 20%
     else if (normalizedStyle.bottom) {
       const bottomPercent = parseFloat(normalizedStyle.bottom);
-      if (bottomPercent > 30) {
-        normalizedStyle.bottom = `${Math.random() * 30}%`;
+      if (bottomPercent > 20) {
+        normalizedStyle.bottom = `${Math.random() * 20}%`;
       }
     } 
     // ถ้าไม่มี position ใดๆ ให้สร้างใหม่
     else {
-      normalizedStyle.bottom = `${Math.random() * 30}%`;
+      normalizedStyle.bottom = `${Math.random() * 20}%`;
     }
 
     // ตรวจสอบและจำกัด left position ให้อยู่ระหว่าง 10%-70%
