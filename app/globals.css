@@ -1,10 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-prompt);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,240 +18,62 @@
   }
 }
 
-/* Flowing image */
-.flowing-image {
-  position: absolute;
-  bottom: 20px; /* Keep the image floating just above the water */
-  left: -100%; /* Start off-screen */
-  width: 200px; /* Adjust the width of the image */
-  animation: flow 12s ease-in-out infinite; /* Slow flowing effect */
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Shadow to make it stand out */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-prompt), sans-serif;
 }
 
-/* Water ripple animation */
-@keyframes ripple {
-  0%, 100% {
-    transform: scale(1) translateY(0); /* Initial water level */
-  }
-  50% {
-    transform: scale(1.05) translateY(-5px); /* Subtle rise and fall */
-  }
-}
-
-/* Flow animation for image */
-@keyframes flow {
+/* Custom River Floating Animation */
+@keyframes river-float {
   0% {
-    transform: translateX(-100%) rotate(0deg);
+    transform: translateX(0px) translateY(0px) rotate(0deg);
   }
-  50% {
-    transform: translateX(50%) rotate(3deg); /* Slight rotation for realism */
+  20% {
+    transform: translateX(-12px) translateY(-8px) rotate(-2deg);
+  }
+  40% {
+    transform: translateX(8px) translateY(-15px) rotate(1.5deg);
+  }
+  60% {
+    transform: translateX(-6px) translateY(-12px) rotate(-1deg);
+  }
+  80% {
+    transform: translateX(10px) translateY(-6px) rotate(2deg);
   }
   100% {
-    transform: translateX(100%) rotate(0deg);
+    transform: translateX(0px) translateY(0px) rotate(0deg);
   }
 }
 
-/* In your global styles (e.g., styles/globals.css) */
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&family=Prompt:wght@300;400;500;700&display=swap');
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: 'Kanit', sans-serif; /* Or 'Prompt' if you prefer */
-}
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-btn {
-  height: 10vmin;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 1s linear;
-  }
-}
-
-.Footer {
-  padding: 20px;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: rgb(51, 51, 51);
-  color: white;
-  text-align: center;
-}
-
-h1,
-p {
-  font-family: kanit;
-}
-
-.kanit-thin {
-  font-family: "Kanit", sans-serif;
-  font-weight: 100;
-  font-style: normal;
-}
-
-.kanit-extralight {
-  font-family: "Kanit", sans-serif;
-  font-weight: 200;
-  font-style: normal;
-}
-
-.kanit-light {
-  font-family: "Kanit", sans-serif !important;
-  font-weight: 300;
-  font-style: normal;
-}
-
-.kanit-regular {
-  font-family: "Kanit", sans-serif !important;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.kanit-medium {
-  font-family: "Kanit", sans-serif !important;
-  font-weight: 500;
-  font-style: normal;
-}
-
-.kanit-semibold {
-  font-family: "Kanit", sans-serif !important;
-  font-weight: 600;
-  font-style: normal;
-}
-
-.kanit-bold {
-  font-family: "Kanit", sans-serif !important;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.kanit-extrabold {
-  font-family: "Kanit", sans-serif;
-  font-weight: 800;
-  font-style: normal;
-}
-
-.kanit-black {
-  font-family: "Kanit", sans-serif;
-  font-weight: 900;
-  font-style: normal;
-}
-
-.kanit-thin-italic {
-  font-family: "Kanit", sans-serif;
-  font-weight: 100;
-  font-style: italic;
-}
-
-.kanit-extralight-italic {
-  font-family: "Kanit", sans-serif;
-  font-weight: 200;
-  font-style: italic;
-}
-
-.kanit-light-italic {
-  font-family: "Kanit", sans-serif;
-  font-weight: 300;
-  font-style: italic;
-}
-
-.kanit-regular-italic {
-  font-family: "Kanit", sans-serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.kanit-medium-italic {
-  font-family: "Kanit", sans-serif;
-  font-weight: 500;
-  font-style: italic;
-}
-
-.kanit-semibold-italic {
-  font-family: "Kanit", sans-serif;
-  font-weight: 600;
-  font-style: italic;
-}
-
-.kanit-bold-italic {
-  font-family: "Kanit", sans-serif;
-  font-weight: 700;
-  font-style: italic;
-}
-
-.kanit-extrabold-italic {
-  font-family: "Kanit", sans-serif;
-  font-weight: 800;
-  font-style: italic;
-}
-
-.kanit-black-italic {
-  font-family: "Kanit", sans-serif;
-  font-weight: 900;
-  font-style: italic;
-}
-
-
-.App-sound {
-  height: 2vmin;
-}
-
-.App-header {
-  background-image: url("../public/images/bg-no-krathong.png");
-  background-position: center;
-  background-size: cover;
-  position: relative;
-  background-repeat: no-repeat;
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  0% {
-    transform: translate(1px, 1px) rotate(0deg);
+@keyframes gentle-bob {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
   }
   50% {
-    transform: translate(-1px, 2px) rotate(-5deg);
+    transform: translateY(-4px) scale(1.02);
   }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@keyframes soft-glow {
+  0%, 100% {
+    opacity: 0.85;
+    filter: brightness(1);
   }
+  50% {
+    opacity: 0.95;
+    filter: brightness(1.1);
+  }
+}
+
+.float-on-river {
+  animation: river-float 6s ease-in-out infinite;
+}
+
+.float-on-river img {
+  animation: gentle-bob 3s ease-in-out infinite, soft-glow 4s ease-in-out infinite;
+}
+
+.float-on-river p {
+  animation: soft-glow 5s ease-in-out infinite;
 }
