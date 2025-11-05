@@ -17,10 +17,23 @@ export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioElement, setAudioElement] = useState(null);
 
-  // โหลดกระทงจาก localStorage และเปิด modal หลัง hydration
+  // โหลดกระทงจาก API และเปิด modal หลัง hydration
   useEffect(() => {
-    const savedKrathongs = JSON.parse(localStorage.getItem('krathongs') || '[]');
-    setFloatingKrathongs(savedKrathongs);
+    // Fetch krathongs from API instead of localStorage
+    const fetchKrathongs = async () => {
+      try {
+        const response = await fetch('/api/loykrathong');
+        const result = await response.json();
+        if (result.success) {
+          setFloatingKrathongs(result.data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch krathongs:', error);
+        setFloatingKrathongs([]);
+      }
+    };
+
+    fetchKrathongs();
     setIsMounted(true);
     setIsOpen(true); // เปิด modal หลังจาก component mount แล้ว
 
@@ -92,25 +105,15 @@ export default function Home() {
     }
   };
 
-  // ฟังก์ชันลอยกระทง (เหมือนเดิม)
-  const handleLaunchKrathong = (krathongData) => {
+  // ฟังก์ชันลอยกระทง - อัพเดทให้ใช้ API
+  const handleLaunchKrathong = (newKrathong) => {
     if (!isMounted) return; // ป้องกันการทำงานก่อน hydration
     
-    const newKrathong = {
-      id: Date.now(),
-      ...krathongData,
-      style: {
-        left: `${Math.random() * 90}%`,
-        top: `${60 + Math.random() * 30}%`,
-        animationDuration: `${10 + Math.random() * 5}s`,
-      },
-    };
-
-    const updatedKrathongs = [...floatingKrathongs, newKrathong];
-    setFloatingKrathongs(updatedKrathongs);
-    localStorage.setItem('krathongs', JSON.stringify(updatedKrathongs));
+    // Add the new krathong to local state immediately for better UX
+    setFloatingKrathongs(prevKrathongs => [...prevKrathongs, newKrathong]);
     
-    // (เราไม่ต้องสั่งปิด Modal ที่นี่แล้ว เพราะ Modal จะจัดการตัวเอง)
+    // Note: The actual API call will be made from the modal component
+    // This function now just handles updating the local state
   };
 
   return (

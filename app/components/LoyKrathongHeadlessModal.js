@@ -16,6 +16,7 @@ export default function LoyKrathongHeadlessModal({ isOpen, onClose, onLaunch }) 
   const [selectedKrathong, setSelectedKrathong] = useState(KRATHONG_TYPES[0].id);
   const [name, setName] = useState('');
   const [wish, setWish] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // ฟังก์ชันที่ Headless UI จะเรียกเมื่อ user กด 'Esc' หรือคลิก backdrop
   const handleClose = () => {
@@ -23,17 +24,58 @@ export default function LoyKrathongHeadlessModal({ isOpen, onClose, onLaunch }) 
     onClose();  // เรียกฟังก์ชันปิดจาก page.js
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name || !wish) return alert('กรุณากรอกข้อมูลให้ครบ');
     
-    onLaunch({
-      type: selectedKrathong,
-      name,
-      wish,
-    });
+    setIsSubmitting(true);
     
-    handleClose(); // ลอยกระทงเสร็จแล้วปิด Modal
+    try {
+      // Call the external API
+      const response = await fetch('https://www.cipacmeeting.com/api/loykrathong', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: selectedKrathong,
+          name,
+          wish,
+        }),
+      });
+
+      const result = await response.json();
+      
+      if (result.success) {
+        // Create krathong object with style for local display
+        const newKrathong = {
+          id: result.data?.id || Date.now(),
+          type: selectedKrathong,
+          name,
+          wish,
+          style: {
+            left: `${Math.random() * 90}%`,
+            top: `${60 + Math.random() * 30}%`,
+            animationDuration: `${10 + Math.random() * 5}s`,
+          },
+        };
+        
+        // Update local state through parent component
+        onLaunch(newKrathong);
+        
+        // Reset form and close modal
+        setName('');
+        setWish('');
+        handleClose();
+      } else {
+        alert('เกิดข้อผิดพลาด: ' + (result.error || 'ไม่สามารถลอยกระทงได้'));
+      }
+    } catch (error) {
+      console.error('API Error:', error);
+      alert('เกิดข้อผิดพลาดในการเชื่อมต่อ กรุณาลองใหม่อีกครั้ง');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // --- UI ของ Step 1 และ Step 2 (เหมือนเดิมทุกประการ) ---
@@ -84,9 +126,24 @@ export default function LoyKrathongHeadlessModal({ isOpen, onClose, onLaunch }) 
           className="flex-1 bg-gray-500 text-white p-2 rounded-lg">
           กลับไป
         </button>
-        <button type="submit"
-          className="flex-1 bg-green-600 text-white p-2 rounded-lg">
-          ลอยกระทงกันเลย
+        <button 
+          type="submit"
+          disabled={isSubmitting}
+          className="flex-1 bg-green-600 text-white p-2 rounded-lg disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors duration-200"
+        >
+          {isSubmitting ? (
+            <div className="flex items-center justify-center">
+              <svg className="animate-spin h-5 w-5 mr-2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round" strokeDasharray="32" strokeDashoffset="32">
+                  <animate attributeName="stroke-dasharray" dur="2s" values="0 32;16 16;0 32;0 32" repeatCount="indefinite"/>
+                  <animate attributeName="stroke-dashoffset" dur="2s" values="0;-16;-32;-32" repeatCount="indefinite"/>
+                </circle>
+              </svg>
+              กำลังลอยกระทง...
+            </div>
+          ) : (
+            'ลอยกระทงกันเลย'
+          )}
         </button>
       </div>
     </form>
