@@ -25,7 +25,7 @@ export default function Footer() {
             <div className="text-sm space-y-2 opacity-90">
               <p>📱 โทร: <a href="tel:095-724-9324" className="hover:text-yellow-300 transition-colors">095-724-9324 (คุณโจ้)</a></p>
               <p>✉️ อีเมล: <a href="mailto:polawathuang@gmail.com" className="hover:text-yellow-300 transition-colors">polawathuang@gmail.com</a></p>
-              <p>🌐 เว็บไซต์: <a href="https://polawathuang.vercel.app" className="hover:text-yellow-300 transition-colors">คลิกดูผลงานการทำเว็บไซต์อื่นๆ ได้ที่นี่</a></p>
+              <p>🌐 เว็บไซต์: <a href="https://polawathuang.vercel.app" className="hover:text-yellow-300 transition-colors" target="_blank">คลิกดูผลงานการทำเว็บไซต์อื่นๆ ได้ที่นี่</a></p>
             </div>
           </div>
         </div>
